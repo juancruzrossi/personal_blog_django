@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block titulo %}Acerca De Mi{% endblock titulo %}
+
+{% block imagen %}{% static 'img/about.jpg' %}{% endblock imagen %}
+
+{% block titulo_secundario %}Acerca de mi{% endblock titulo_secundario %}
+
+
+{% block barra_busqueda %}{% endblock barra_busqueda %}
+
+
+{% block contenido_principal %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Educación</h3>
+        <p>Soy <strong>Contador Público</strong> por la Universidad Católica de Santiago Del Estero y actualmente me encuentro estudiando como <strong>Desarrollador de Software</strong> en el Instituto Superior N° 2 "Joaquin V. Gonzalez".</p>
+        <p>Nivel de Inglés Avanzado.</p>
+        <br>
+        <h3>Aptitudes</h3>
+        <p>Soy un apasionado del SO Linux y el lenguaje de programación Python, tanto como sus frameworks Flask y Django y en mis tiempos libres me dedico a desarrollar proyectos web los cuales se encuentran alojados en GitHub, linkeado al pie de página.</p>
+        <p>Actitud positiva, trabajo en grupo, buena predisposición. Proactivo y con muchas ganas de transformar los conocimientos básicos en avanzados.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+{% endblock contenido_principal %}
