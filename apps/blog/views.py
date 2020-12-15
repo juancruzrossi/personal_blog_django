@@ -58,5 +58,23 @@ def about(request):
     return render(request, 'about.html')
 
 def contacto(request):
-
-    return render(request, 'contacto.html')
+    
+    if request.method == "POST":
+        name = request.POST["name"]
+        message_phone = request.POST["phone"]
+        message = request.POST["message"]
+        email_from = "¡Contacto desde tu página web! <thebentley14@gmail.com>"
+        recipient_list = ['jcrzrossi@gmail.com',]
+      
+        #sending email
+        send_mail(
+            'Email de: ' + name, #subject, in this case, the name
+            message + '\n \n' + 'Número de teléfono para contactar: ' + message_phone, #message
+            email_from, #from email
+            recipient_list
+        )
+        
+        return render(request, "contacto.html", {'name':name})
+    
+    else:
+        return render(request, 'contacto.html')
