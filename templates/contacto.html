@@ -14,47 +14,55 @@
 
 {% block contenido_principal %}
 
-<div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-          <p>...en desarrollo...</p>
-          <form name="sentMessage" id="contactForm">
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Nombre</label>
-                <input type="text" label="nombre" class="form-control" placeholder="Nombre" id="name">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Email</label>
-                <input type="email" class="form-control" placeholder="Email" id="email">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Número De Teléfono</label>
-                <input type="tel" class="form-control" placeholder="Número De Teléfono" id="phone">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Mensaje</label>
-                <textarea rows="5" class="form-control" placeholder="Mensaje" id="message"></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <br>
-            <div id="success"></div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
-          </form>
-        </div>
+{% if name %}
+<center>
+  <h2>Gracias {{ name }}!</h2>
+  <p>Recibí tu mensaje y estaremos en contacto brevemente.</p>
+  <br>
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+      <div class="clearfix">
+        <a href="{% url 'blog:index' %}" class="btn btn-primary float-center">Ir a Inicio</a>
       </div>
     </div>
-  
-    <hr>
+  </div>
+</center>
+<br>
+{% else %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <form action="{% url 'blog:contacto' %}" method="post">
+        {% csrf_token %}
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Nombre y Apellido</label>
+            <input type="text" label="nombre" class="form-control" placeholder="Nombre y Apellido" name="name" required>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Número De Teléfono</label>
+            <input type="tel" class="form-control" placeholder="Número De Teléfono" name="phone" required>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Mensaje</label>
+            <textarea rows="5" class="form-control" placeholder="Mensaje" name="message" required></textarea>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>
 
+<hr>
+{% endif %}
 {% endblock contenido_principal %}
